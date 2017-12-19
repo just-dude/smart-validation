@@ -5,7 +5,6 @@
  */
 package smartvalidation.сonstraintValidator;
 
-import com.sun.deploy.util.StringUtils;
 import org.junit.Test;
 import smartvalidation.validator.сonstraintValidator.ConstraintValidators;
 import smartvalidation.validator.сonstraintValidator.NullValidator;
