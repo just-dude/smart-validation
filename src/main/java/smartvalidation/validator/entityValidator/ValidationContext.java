@@ -18,5 +18,12 @@ public class ValidationContext {
 
     public String getPropertiesPrefix() {
         return propertiesPrefix;
-    }    
+    }
+
+    public String getFullPropertyName(String propertyName){
+        if(propertiesPrefix!=null && propertiesPrefix!=""){
+            return propertiesPrefix+"."+propertyName;
+        }
+        return propertyName;
+    }
 }

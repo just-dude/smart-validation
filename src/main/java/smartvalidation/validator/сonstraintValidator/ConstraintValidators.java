@@ -74,6 +74,14 @@ public class ConstraintValidators {
     public static ConstraintValidator<String> stringLength(ConstraintValidator<Integer> validator){
         return StringLengthValidator.stringLength(validator);
     }
+
+    public static ConstraintValidator<String> split(String separator, ConstraintValidator<String> validator){
+        return SplitStringValidator.splitString(separator,validator);
+    }
+
+    public static <T extends Collection> ConstraintValidator<T> collectionSize(ConstraintValidator<Integer> validator){
+        return CollectionSizeValidator.collectionSize(validator);
+    }
     
     public static ConstraintValidator<String> matchesRegularExpression(Pattern pattern){
         return StringMatchesRegularExpressionValidator.matchesRegularExpression(pattern);

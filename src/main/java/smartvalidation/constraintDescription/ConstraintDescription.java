@@ -6,15 +6,15 @@
 package smartvalidation.constraintDescription;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 
 
 public class ConstraintDescription {
     
-    private String constraintFullName;
-    
-    private String[] constraintParameters;
+    protected String constraintFullName;
+    protected String[] constraintParameters;
 
     public ConstraintDescription(String constraintName, String[] constraintParameters) {
         this.constraintFullName = constraintName;
@@ -66,9 +66,9 @@ public class ConstraintDescription {
     public String toString() {
         return "ConstraintDescription{" + "constraintFullName=" + constraintFullName + ", constraintParameters=" + Arrays.toString(constraintParameters) + '}';
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }
