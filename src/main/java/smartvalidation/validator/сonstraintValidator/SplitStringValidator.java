@@ -7,13 +7,15 @@ package smartvalidation.validator.сonstraintValidator;
 
 import org.apache.commons.lang3.StringUtils;
 import smartvalidation.constraintDescription.ConstraintDescription;
-import smartvalidation.constraintDescription.ConstraintDescriptionWithSubConstraintDescriptions;
+import smartvalidation.constraintDescription.PartsOfWholeSupportedConstraintDescription;
 import smartvalidation.exception.ConstraintValidationException;
 import smartvalidation.validator.сonstraintValidator.base.ConstraintValidator;
 import smartvalidation.validator.сonstraintValidator.base.UsesConstraintNameNullSafeValidator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.split;
 
@@ -26,7 +28,7 @@ public class SplitStringValidator implements ConstraintValidator<String>{
 
     private final ConstraintValidator<String> validator;
     private String separator;
-    private List<ConstraintDescription> constraintDescriptions;
+    private Map<String,ConstraintDescription> constraintDescriptions;
 
     public SplitStringValidator(String separator, ConstraintValidator<String> validator) {
         if(validator==null){
@@ -44,26 +46,28 @@ public class SplitStringValidator implements ConstraintValidator<String>{
         if(actualStringParts.length==0){
             return validator.isValid("");
         }
+        int i=0;
         for(String part:actualStringParts){
             if(!validator.isValid(part)){
                 isValid=false;
-                addConstraintDescription(validator.getConstraintDescription());
+                addConstraintDescription("["+i+"]",validator.getConstraintDescription());
             }
+            i++;
         }
         return isValid;
     }
 
     @Override
     public ConstraintDescription getConstraintDescription() {
-        return new ConstraintDescriptionWithSubConstraintDescriptions(UsesConstraintNameNullSafeValidator.CONSTRAINT_NAME_BASIS+".splitString",
+        return new PartsOfWholeSupportedConstraintDescription(UsesConstraintNameNullSafeValidator.CONSTRAINT_NAME_BASIS+".splitString",
                 new String[]{},constraintDescriptions);
     }
 
-    private void addConstraintDescription(ConstraintDescription cd){
+    private void addConstraintDescription(String partName,ConstraintDescription cd){
         if(constraintDescriptions==null){
-            constraintDescriptions=new ArrayList<>();
+            constraintDescriptions=new HashMap<>();
         }
-        constraintDescriptions.add(cd);
+        constraintDescriptions.put(partName,cd);
     }
 
     private void clearConstraintDescription(){

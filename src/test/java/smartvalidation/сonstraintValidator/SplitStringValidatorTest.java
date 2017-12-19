@@ -2,7 +2,7 @@ package smartvalidation.сonstraintValidator;
 
 import org.junit.Before;
 import org.junit.Test;
-import smartvalidation.constraintDescription.ConstraintDescriptionWithSubConstraintDescriptions;
+import smartvalidation.constraintDescription.PartsOfWholeSupportedConstraintDescription;
 import smartvalidation.validator.сonstraintValidator.ConstraintValidators;
 import smartvalidation.validator.сonstraintValidator.StringMatchesRegularExpressionValidator;
 import smartvalidation.validator.сonstraintValidator.base.ConstraintValidator;
@@ -40,11 +40,11 @@ public class SplitStringValidatorTest {
     public void getConstraintDescription() throws Exception {
         validator.isValid("artem,suslov");
         assertEquals("validation.constraintViolation.splitString",validator.getConstraintDescription().getConstraintFullName());
-        assertTrue(validator.getConstraintDescription() instanceof ConstraintDescriptionWithSubConstraintDescriptions);
+        assertTrue(validator.getConstraintDescription() instanceof PartsOfWholeSupportedConstraintDescription);
         validator.isValid("artem1,suslov");
         assertEquals("validation.constraintViolation.splitString",validator.getConstraintDescription().getConstraintFullName());
-        assertEquals(1,((ConstraintDescriptionWithSubConstraintDescriptions)validator.getConstraintDescription()).getSubConstraintDesciptions().size());
-        assertEquals("validation.constraintViolation.isMatchToMyRegularExpression",((ConstraintDescriptionWithSubConstraintDescriptions)validator.getConstraintDescription()).getSubConstraintDesciptions().get(0).getConstraintFullName());
+        assertEquals(1,((PartsOfWholeSupportedConstraintDescription)validator.getConstraintDescription()).getPartNameToConstraintDesciptionMap().size());
+        assertEquals("validation.constraintViolation.isMatchToMyRegularExpression",((PartsOfWholeSupportedConstraintDescription)validator.getConstraintDescription()).getPartNameToConstraintDesciptionMap().get(0).getConstraintFullName());
     }
 
 }
