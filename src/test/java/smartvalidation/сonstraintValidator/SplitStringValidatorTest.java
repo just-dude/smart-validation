@@ -44,7 +44,7 @@ public class SplitStringValidatorTest {
         validator.isValid("artem1,suslov");
         assertEquals("validation.constraintViolation.splitString",validator.getConstraintDescription().getConstraintFullName());
         assertEquals(1,((PartsOfWholeSupportedConstraintDescription)validator.getConstraintDescription()).getPartNameToConstraintDesciptionMap().size());
-        assertEquals("validation.constraintViolation.isMatchToMyRegularExpression",((PartsOfWholeSupportedConstraintDescription)validator.getConstraintDescription()).getPartNameToConstraintDesciptionMap().get(0).getConstraintFullName());
+        assertEquals("validation.constraintViolation.isMatchToMyRegularExpression",((PartsOfWholeSupportedConstraintDescription)validator.getConstraintDescription()).getPartNameToConstraintDesciptionMap().values().iterator().next().getConstraintFullName());
     }
 
 }
