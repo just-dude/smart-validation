@@ -21,7 +21,7 @@ public class ValidationContext {
     }
 
     public String getFullPropertyName(String propertyName){
-        if(propertiesPrefix!=null && propertiesPrefix!=""){
+        if(propertiesPrefix!=null && !propertiesPrefix.equals("")){
             return propertiesPrefix+"."+propertyName;
         }
         return propertyName;

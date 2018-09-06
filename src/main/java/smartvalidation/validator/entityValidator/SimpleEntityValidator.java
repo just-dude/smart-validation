@@ -43,7 +43,7 @@ public class SimpleEntityValidator implements EntityValidator{
 
 
     public List<ConstraintViolation> getConstraintViolations() throws EntityValidationException{
-        if(constraintViolations!=null && !constraintViolations.isEmpty()){
+        if(constraintViolations!=null){
             return constraintViolations;
         }
         else{
